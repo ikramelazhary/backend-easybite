@@ -1,41 +1,33 @@
 import express from "express"
 import cors from "cors"
-import { connectDB } from "./config/db.js"
-import foodRouter from "./routes/foodRoute.js"
-import userRouter from "./routes/userRoute.js"
+import { connectDB } from "../config/db.js"
+import foodRouter from "../routes/foodRoute.js"
+import userRouter from "../routes/userRoute.js"
+import cartRouter from "../routes/cartRoute.js"
+import orderRouter from "../routes/orderRoute.js"
 import 'dotenv/config'
-import cartRouter from "./routes/cartRoute.js"
-import orderRouter from "./routes/orderRoute.js"
+import { createServer } from "@vercel/node"
 
-
-//app config
+// Init
 const app = express()
-const port = 3000
 
-//middleweare
-app.use(express.json())
+// Middleware
 app.use(cors())
+app.use(express.json())
 
+// Connect DB
+connectDB()
 
-// db connection 
-connectDB();
+// Routes
+app.use("/api/food", foodRouter)
+app.use("/api/user", userRouter)
+app.use("/api/cart", cartRouter)
+app.use("/api/order", orderRouter)
+app.use("/images", express.static('uploads'))
 
-//api endpoints
-
-app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
-
-
-app.get("/",(req,res)=>{
-    res.send("API Working")
+// Test
+app.get("/", (req, res) => {
+  res.send("API Working on Vercel")
 })
 
-
-app.listen(port,()=>{
-    console.log(`Server Started on http://localhost:${port}`)
-})
-
-//mongodb+srv://ikramelazhary78:UiX1Uh0my1dl5BpB@cluster0.4u12arw.mongodb.net/?
+export default app
