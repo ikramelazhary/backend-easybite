@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@node-rs/bcrypt": "^1.10.7",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cloudinary": "^1.21.0",
     "cors": "^2.8.5",
