@@ -7,9 +7,9 @@ import 'dotenv/config'
 import cartRouter from "../routes/cartRoute.js"
 import orderRouter from "../routes/orderRoute.js"
 import serverless from "serverless-http";
-import { v2 as cloudinary } from 'cloudinary';
+import cloudinaryPkg from 'cloudinary';
+const { v2: cloudinary } = cloudinaryPkg;
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
-
 
 // app config
 const app = express()
