@@ -1,8 +1,14 @@
 import express from "express";
 import multer from "multer";
-import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-import { addFood, listFood, removeFood } from "../controllers/foodController.js";
+import {
+  addFood,
+  listFood,
+  removeFood,
+} from "../controllers/foodController.js";
+import cloudinaryPkg from "cloudinary";
+
+const { v2: cloudinary } = cloudinaryPkg;
 
 const foodRouter = express.Router();
 
@@ -17,8 +23,8 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'food_images',
-    allowed_formats: ['jpg', 'jpeg', 'png'],
+    folder: "food_images",
+    allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
 
