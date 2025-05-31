@@ -9,7 +9,7 @@ export const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.mongodb+srv:'ikramelazhary78:UiX1Uh0my1dl5BpB@cluster0.4u12arw.mongodb.net/backend--pfe', {
+    await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
