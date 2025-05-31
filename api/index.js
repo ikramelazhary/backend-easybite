@@ -42,5 +42,5 @@ app.listen(port,()=>{
 })
 
 // Export pour Vercel
-export const handler = serverless(app);
+export default serverless(app);
 //mongodb+srv://ikramelazhary78:UiX1Uh0my1dl5BpB@cluster0.4u12arw.mongodb.net/?
